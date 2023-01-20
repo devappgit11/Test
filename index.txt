@@ -1,15 +1,16 @@
 <?php
-	// get years that have posts
-	$years = $wpdb->get_results( "SELECT YEAR(post_date) AS year FROM wp_posts WHERE post_type = 'post' AND post_status = 'publish' GROUP BY year DESC" );
+// get years that have posts
+$years = $wpdb->get_results( "SELECT YEAR(post_date) AS year FROM wp_posts WHERE post_type = 'post' AND post_status = 'publish' GROUP BY year DESC" );
 
-	foreach ( $years as $year ) {
-		// get posts for each year
-		$posts_this_year = $wpdb->get_results( "SELECT post_title FROM wp_posts WHERE post_type = 'post' AND post_status = 'publish' AND YEAR(post_date) = '" . $year->year . "'" );
+foreach ( $years as $year ) {
+	// get posts for each year
+	$posts_this_year = $wpdb->get_results( "SELECT post_title FROM wp_posts WHERE post_type = 'post' AND post_status = 'publish' AND YEAR(post_date) = '" . $year->year . "'" );
 
-		echo '<h2>' . $year->year . '</h2><ul>';
-		foreach ( $posts_this_year as $post ) {
-			echo '<li>' . $post->post_title . '</li>';
-		}
-		echo '</ul>';
+	echo '<h2>' . $year->year . '</h2><ul>';
+	foreach ( $posts_this_year as $post ) {
+		echo '<li>' . $post->post_title . '</li>';
 	}
-	?> 
+	echo '</ul>';
+}
+This is a testing.
+?> 
